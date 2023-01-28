@@ -1,0 +1,38 @@
+<%= form_with model: @flight, method: :get do |form|%>
+  <p>
+    <%= form.label :departure_airport_id, 'Origin Airport: ' %>
+    <%= form.select :departure_airport_id, @airport_options, include_blank: 'Any Airport' %>
+  </p>
+  <p>
+    <%= form.label :arrival_airport_id, 'Destination Airport: ' %>
+    <%= form.select :arrival_airport_id, @airport_options, include_blank: 'Any Airport' %>
+  </p>
+  <p>
+    <%= form.label :deperature_date, 'Departure Date: ' %>
+    <%= form.select :departure_date, @date_options, include_blank: 'Any Date' %>
+  </p>
+  <p>
+    <%= form.label :number_of_passengers, 'Number of Passengers' %>
+    <%= form.select :number_of_passengers, (1..4).to_a %>
+  </p>
+  <p>
+    <%= form.submit value: 'Search Flights' %>
+  </p>
+<% end %>
+
+<% if @flights %>
+  <%= form_with url: '/bookings' do |form| %>
+    <%= form.hidden_field :number_of_passengers, value: @number_of_passengers %>
+    <% @flights.each do |flight| %>
+      <p>
+        <%= form.radio_button :flight_id, flight.id %>
+        <%= form.label :flight_id, "Origin: #{flight.departure_airport.name} ||
+                                 Destination: #{flight.arrival_airport.name} ||
+                                 Date: #{flight.departure_date_formatted} ||
+                                 Time: #{flight.departure_time_formatted}" %>
+      </p>
+    <% end %>
+  <% end %>
+<% else %>
+  No flights
+<% end %>
