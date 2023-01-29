@@ -12,26 +12,23 @@
     <%= form.select :departure_date, @date_options, include_blank: 'Any Date' %>
   </p>
   <p>
-    <%= form.label :number_of_passengers, 'Number of Passengers' %>
-    <%= form.select :number_of_passengers, (1..4).to_a %>
-  </p>
-  <p>
     <%= form.submit value: 'Search Flights' %>
   </p>
 <% end %>
 
-<% if @flights %>
-  <%= form_with url: '/bookings' do |form| %>
-    <%= form.hidden_field :number_of_passengers, value: @number_of_passengers %>
-    <% @flights.each do |flight| %>
-      <p>
-        <%= form.radio_button :flight_id, flight.id %>
-        <%= form.label :flight_id, "Origin: #{flight.departure_airport.name} ||
-                                 Destination: #{flight.arrival_airport.name} ||
-                                 Date: #{flight.departure_date_formatted} ||
-                                 Time: #{flight.departure_time_formatted}" %>
-      </p>
+<% if @flights && !@flights.empty? %>
+  <%= form_with url: '/bookings/new', method: :get do |form| %>
+    <%= form.collection_radio_buttons :flight_id, @flights, :id, :to_radio, html_options = { checked: @flights.first.id } do |b| %>
+      <div>
+        <%= b.radio_button%>
+        <%= b.label %>
+      </div>
     <% end %>
+    <p>
+      <%= form.label :number_of_passengers, 'Number of Passengers' %>
+      <%= form.select :number_of_passengers, (1..4).to_a %>
+    </p>
+    <%= form.submit 'Proceed to booking'%>
   <% end %>
 <% else %>
   No flights

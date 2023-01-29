@@ -8,6 +8,13 @@ class Flight < ApplicationRecord
     order(:departure_date).map { |flight| [flight.departure_date_formatted, flight.departure_date] }.uniq
   end
 
+  def to_radio
+    "Origin: #{departure_airport.name} ||
+     Destination: #{arrival_airport.name} ||
+     Date: #{departure_date_formatted} ||
+     Time: #{departure_time_formatted}"
+  end
+
   def departure_date_formatted
     departure_date.strftime('%A, %B %d, %Y')
   end

@@ -1,0 +1,20 @@
+<%= render partial: 'flights/flight_info', locals: { flight: @flight } %>
+
+<%= form_with model: @booking do |form| %>
+  <%= form.hidden_field :flight_id, value: @flight.id %>
+  <%= form.fields_for :passengers do |subform| %>
+    <p>
+      <br>
+      <b>Passenger: </b>
+    </p>
+    <p>
+      <%= subform.label :name %>
+      <%= subform.text_field :name %>
+    </p>
+    <p>
+      <%= subform.label :email %>
+      <%= subform.text_field :email %>
+    </p>
+  <% end %>
+  <%= form.submit 'Create Booking' %>
+<% end %>

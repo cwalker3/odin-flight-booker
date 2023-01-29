@@ -1,0 +1,10 @@
+<p>
+  <b>Booking number:</b> <%= @booking.id %>
+</p>
+
+<%= render partial: 'flights/flight_info', locals: { flight: @flight } %>
+
+<h2>Passengers</h2>
+<% @passengers.each do |passenger| %>
+  <%= render partial: 'passengers/passenger_info', locals: { passenger: passenger } %>
+<% end %>

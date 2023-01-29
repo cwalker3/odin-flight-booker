@@ -3,11 +3,9 @@ class FlightsController < ApplicationController
     @flight = params[:flight] ? Flight.new(flight_params) : Flight.new
     @airport_options = Airport.options_for_select
     @date_options = Flight.options_for_date
+    return unless params[:flight]
 
-    if params[:flight]
-      @flights = Flight.includes(:departure_airport, :arrival_airport).order(:departure_date).where(flight_params)
-      @number_of_passengers = params[:flight][:number_of_passengers]
-    end
+    @flights = Flight.includes(:departure_airport, :arrival_airport).order(:departure_date).where(flight_params)
   end
 
   private
