@@ -1,20 +1,31 @@
 <%= render partial: 'flights/flight_info', locals: { flight: @flight } %>
 
-<%= form_with model: @booking do |form| %>
-  <%= form.hidden_field :flight_id, value: @flight.id %>
-  <%= form.fields_for :passengers do |subform| %>
-    <p>
-      <br>
-      <b>Passenger: </b>
-    </p>
-    <p>
-      <%= subform.label :name %>
-      <%= subform.text_field :name %>
-    </p>
-    <p>
-      <%= subform.label :email %>
-      <%= subform.text_field :email %>
-    </p>
+<h2>Passenger Info: </h2>
+<div data-controller="form">
+  <%= form_with model: @booking, html: { "data-form-target": "form" } do |form| %>
+    <%= form.hidden_field :flight_id, value: @flight.id %>
+    <%= form.fields_for :passengers do |subform|  %>
+      <div data-form-target="subform">
+        <div data-controller='form'>
+          <div class='subform' data-form-target="subform">
+            <h3>Passenger 1</h3>
+            <div>
+              <%= subform.label :name %>
+              <%= subform.text_field :name %>
+            </div>
+            <div>
+              <%= subform.label :email %>
+              <%= subform.text_field :email %>
+            </div>
+            <div>
+              <button type='button' data-action='form#remove'>Remove Passenger</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <button type="button" style="display: block; margin-bottom: 0.5rem;" data-action="form#add">Add Passenger</button>
+    <%= form.submit 'Create Booking' %>
   <% end %>
-  <%= form.submit 'Create Booking' %>
-<% end %>
+</div>
+

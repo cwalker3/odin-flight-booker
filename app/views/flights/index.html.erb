@@ -24,10 +24,6 @@
         <%= b.label %>
       </div>
     <% end %>
-    <p>
-      <%= form.label :number_of_passengers, 'Number of Passengers' %>
-      <%= form.select :number_of_passengers, (1..4).to_a %>
-    </p>
     <%= form.submit 'Proceed to booking'%>
   <% end %>
 <% else %>
