@@ -2,9 +2,9 @@
 <p>
   <b>Flight Number:</b> <%= @flight.id%> 
   <br>
-  <b>Departure:</b> <%= @flight.departure_date_formatted + ' ' + @flight.departure_time_formatted %> 
+  <b>Departure:</b> <%= @flight.departure_date_time_formatted %> 
   <br>
-  <b>Duration: </b><%= @flight.duration / 60 %> hours <%= @flight.duration.modulo(60) %> minutes 
+  <b>Duration: </b><%= flight.duration_formatted %> 
   <br>
   <b>Origin Airport:</b> <%= @flight.departure_airport.name %> 
   <br>

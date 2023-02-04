@@ -1,0 +1,5 @@
+<p>
+  You have booked your ticket for Flight #<%= @flight.id %>
+</p>
+
+<%= render partial: 'flights/flight_info', locals: { flight: @flight } %>

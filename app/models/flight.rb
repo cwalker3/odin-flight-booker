@@ -9,10 +9,9 @@ class Flight < ApplicationRecord
   end
 
   def to_radio
-    "Origin: #{departure_airport.name} ||
-     Destination: #{arrival_airport.name} ||
-     Date: #{departure_date_formatted} ||
-     Time: #{departure_time_formatted}"
+    "Departure: #{departure_date_time_formatted} ||
+     Origin: #{departure_airport.name} ||
+     Destination: #{arrival_airport.name}"
   end
 
   def departure_date_formatted
@@ -21,5 +20,13 @@ class Flight < ApplicationRecord
 
   def departure_time_formatted
     departure_time.strftime('%H:%M %Z')
+  end
+
+  def departure_date_time_formatted
+    "#{departure_date_formatted} #{departure_time_formatted}"
+  end
+
+  def duration_formatted
+    "#{duration / 60} hours #{duration.modulo(60)} minutes"
   end
 end
