@@ -12,17 +12,21 @@ Airport.create([{ code: 'ATL', name: 'Atlanta International Airport' },
                 { code: 'SFO', name: 'San Francisco International Airport' },
                 { code: 'SEA', name: 'Seattle International Airport' }])
 
-time = Time.new(2023, 1, 1, 0, 0, 0, '-08:00')
+date = Date.today.to_time
 
-100.times do
+for i in 1..330
+  departure_date = date + i.days
+  time = 0
   Airport.ids.each do |departure_airport_id|
     Airport.ids.each do |arrival_airport_id|
       next if departure_airport_id == arrival_airport_id
 
+      time += 25
+
       Flight.create(arrival_airport_id:,
                     departure_airport_id:,
-                    departure_date: time + rand(0..365).days,
-                    departure_time: time + (rand(96) * 15).minutes,
+                    departure_date:,
+                    departure_time: departure_date + time.minutes,
                     duration: rand(60..600))
     end
   end

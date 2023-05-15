@@ -1,0 +1,20 @@
+.passenger-form {
+  padding: 16px;
+  border-radius: var(--border-radius);
+
+  .subform {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  h3 {
+    margin: 0;
+    align-self: center;
+  }
+}

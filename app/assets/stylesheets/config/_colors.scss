@@ -1,0 +1,28 @@
+* {
+  color: var(--font-color-primary);
+}
+
+.flight {
+  background-color: var(--bg-color-secondary);
+}
+
+select {
+  color: black;
+}
+
+input[type='text'] {
+  color: black;
+}
+
+input[type='submit'],
+button {
+  color: var(--bg-color-primary);
+}
+
+.passenger-form {
+  background-color: var(--bg-color-secondary);
+}
+
+.passenger-info {
+  background-color: var(--bg-color-secondary);
+}

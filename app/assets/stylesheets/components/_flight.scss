@@ -1,0 +1,19 @@
+.flight {
+  border-radius: var(--border-radius);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
+
+    .label {
+      font-weight: bold;
+    }
+  }
+}

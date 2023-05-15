@@ -1,8 +1,14 @@
 class Flight < ApplicationRecord
+  include ActionView::Helpers::TextHelper
+
   belongs_to :departure_airport, class_name: 'Airport'
   belongs_to :arrival_airport, class_name: 'Airport'
   has_many :bookings
   has_many :passengers, through: :bookings
+
+  paginates_per 100
+
+  scope :upcoming, -> { where('departure_date >= ? AND departure_time > ?', Date.today, Time.now + 2.hours) }
 
   def self.options_for_date
     order(:departure_date).map { |flight| [flight.departure_date_formatted, flight.departure_date] }.uniq
@@ -27,6 +33,6 @@ class Flight < ApplicationRecord
   end
 
   def duration_formatted
-    "#{duration / 60} hours #{duration.modulo(60)} minutes"
+    pluralize((duration / 60), 'hour') + ' ' + pluralize((duration.modulo(60)), 'minute')
   end
 end

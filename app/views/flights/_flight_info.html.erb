@@ -1,13 +1,20 @@
-<h2>Flight Info</h2>
-<p>
-  <b>Flight Number:</b> <%= @flight.id%> 
-  <br>
-  <b>Departure:</b> <%= @flight.departure_date_time_formatted %> 
-  <br>
-  <b>Duration: </b><%= flight.duration_formatted %> 
-  <br>
-  <b>Origin Airport:</b> <%= @flight.departure_airport.name %> 
-  <br>
-  <b>Destination Airport:</b> <%= @flight.arrival_airport.name %> 
-  <br>
-</p>
+<div class='container'>
+  <div class="label">Flight Number:</div>
+  <div class="info"><%= flight.id%></div>
+</div>
+<div class='container'>
+  <div class="label">Departure:</div>
+  <div class="info"><%= flight.departure_date_time_formatted %></div>
+</div >
+<div class='container'>
+  <div class="label">Duration:</div>
+  <div class="info"><%= flight.duration_formatted %></div>
+</div>
+<div class='container'>
+  <div class="label">Origin Airport:</div>
+  <div class="info"><%= flight.departure_airport.name %></div>
+</div>
+<div class='container'>
+  <div class="label">Destination Airport:</div>
+  <div class="info"><%= flight.arrival_airport.name %></div>
+</div>

@@ -5,7 +5,10 @@ class FlightsController < ApplicationController
     @date_options = Flight.options_for_date
     return unless params[:flight]
 
-    @flights = Flight.includes(:departure_airport, :arrival_airport).order(:departure_date).where(flight_params)
+    @flights = Flight.includes(:departure_airport, :arrival_airport)
+                     .order(:departure_date)
+                     .where(flight_params)
+                     .page(params[:page])
   end
 
   private

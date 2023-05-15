@@ -31,11 +31,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_210707) do
   create_table "flights", force: :cascade do |t|
     t.integer "departure_airport_id", null: false
     t.integer "arrival_airport_id", null: false
-    t.date "departure_date"
-    t.time "departure_time"
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.time "departure_time"
+    t.date "departure_date"
   end
 
   create_table "passengers", force: :cascade do |t|
