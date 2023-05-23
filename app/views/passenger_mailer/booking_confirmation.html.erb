@@ -1,5 +1,36 @@
-<p>
-  You have booked your ticket for Flight #<%= @flight.id %>
-</p>
 
-<%= render partial: 'flights/flight_info', locals: { flight: @flight } %>
+
+<table style="width: 100%;">
+  <tr>
+    <td style="width: 100%">
+      <table width="50%" align="center">
+        <tr>
+          <td>You have booked your ticket for Flight #<%= @flight.id %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "Click here to view your booking", booking_url(@booking) %></td>
+        </tr>
+        <tr>
+         <td style="border: 1px solid black; font-weight: bold;">Flight Number</td>
+         <td style="border: 1px solid black;"><%= @flight.id %></td>
+        </tr>
+        <tr>
+         <td style="border: 1px solid black; font-weight: bold;">Departure</td>
+         <td style="border: 1px solid black;"><%= @flight.departure_date_time_formatted%></td>
+        </tr>
+        <tr>
+         <td style="border: 1px solid black; font-weight: bold;">Duration</td>
+         <td style="border: 1px solid black;"><%= @flight.duration_formatted%></td>
+        </tr>
+        <tr>
+         <td style="border: 1px solid black; font-weight: bold;">Origin Aiport</td>
+         <td style="border: 1px solid black;"><%= @flight.departure_airport.name%></td>
+        </tr>
+        <tr>
+         <td style="border: 1px solid black; font-weight: bold;">Destination Airport</td>
+         <td style="border: 1px solid black;"><%= @flight.arrival_airport.name%></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
